@@ -101,8 +101,6 @@ Below are the validation tests used to ensure the architecture works as expected
 
 ### 📸 Screenshots
 
-*(Place screenshots of your successful tests here to prove it works)*
-
 > **Example of a successful Structured Output:**
 > <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/49d33a86-1e2d-4bc7-be16-ee1ed50db86f" />
 > <img width="1919" height="902" alt="image" src="https://github.com/user-attachments/assets/9a92de10-cb9f-4d27-97eb-5c6436ecbdd7" />
