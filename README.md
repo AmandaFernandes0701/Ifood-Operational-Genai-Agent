@@ -19,7 +19,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1Yq_2H06QE0VbS8PdoZ6wvX
 3. Run the app:
    `npm run dev`
 
-   # 🍔 iFood Operational GenAI Agent (POC)
+# 🍔 iFood Operational GenAI Agent (POC)
 
 > A Retrieval-Augmented Generation (RAG) agent designed to assist internal Foodlovers with policy-compliant refund and cancellation decisions.
 
@@ -121,7 +121,9 @@ Below are the validation tests used to ensure the architecture works as expected
 *(Place screenshots of your successful tests here to prove it works)*
 
 > **Example of a successful Structured Output:**
-> *[Insert screenshot showing the "📊 INTERNAL ANALYSIS" block followed by the response]*
+> <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/49d33a86-1e2d-4bc7-be16-ee1ed50db86f" />
+> <img width="1919" height="902" alt="image" src="https://github.com/user-attachments/assets/9a92de10-cb9f-4d27-97eb-5c6436ecbdd7" />
+
 
 ---
 
