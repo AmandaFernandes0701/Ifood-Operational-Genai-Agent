@@ -1,0 +1,5 @@
+{
+  "name": "iFood Support AI Agent",
+  "description": "An AI-powered support assistant for iFood Foodlovers to resolve refund and cancellation queries using official policy data.",
+  "requestFramePermissions": []
+}
