@@ -2,23 +2,6 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1Yq_2H06QE0VbS8PdoZ6wvXeYlMufxPqu
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
-
 # 🍔 iFood Operational GenAI Agent (POC)
 
 > A Retrieval-Augmented Generation (RAG) agent designed to assist internal Foodlovers with policy-compliant refund and cancellation decisions.
@@ -127,6 +110,45 @@ Below are the validation tests used to ensure the architecture works as expected
 
 ---
 
+## Running Instructions
+
+Since this application was originally created using Google's AI Studio, you have two options for running and testing this project: viewing it directly in the cloud or running it on your local machine.
+
+## Option 1: Test in AI Studio (Cloud)
+
+The quickest way to test the application is directly through the AI Studio interface. Click the link below to view and interact with the app:
+
+👉🏽 **View in AI Studio:** [View Live Demo](https://ai.studio/apps/drive/1Yq_2H06QE0VbS8PdoZ6wvXeYlMufxPqu)
+
+---
+
+## Option 2: Run Locally
+
+If you prefer to run the application on your own machine for development, follow these steps.
+
+**Prerequisites:**
+* Node.js installed on your machine.
+
+**Setup Steps:**
+
+1.  **Install dependencies:**
+    Run the following command in your terminal to install required packages:
+    ```bash
+    npm install
+    ```
+
+2.  **Configure Environment Variables:**
+    Open the [.env.local](.env.local) file in the root directory and set your valid Gemini API key:
+    `GEMINI_API_KEY=your_actual_api_key_here`
+
+3.  **Start the application:**
+    Launch the local development server:
+    ```bash
+    npm run dev
+    ```
+
+---
+
 ## 🚀 Future Roadmap & Improvements
 
 This POC is the foundation. A production version would include:
@@ -134,18 +156,6 @@ This POC is the foundation. A production version would include:
 * **Vector Database (e.g., Pinecone):** Replacing the CSV for scalable, semantic searching of thousands of policy documents.
 * **Real API Integration:** Connecting the agent to iFood's order management systems to automatically fetch status and perform actions.
 * **Feedback Loop (RLHF):** Implementing thumbs up/down buttons for Foodlovers to rate answers, retraining the model on difficult cases.
-
----
-
-## 💻 How to Run This POC
-
-Since this is a No-Code solution, it was built and tested using **Google AI Studio** (Gemini models).
-
-1.  Download the `base_conhecimento_ifood_genai.csv` file present in this repository.
-2.  Access a large language model interface that allows file uploads and system instructions (e.g., Google AI Studio, ChatGPT Plus).
-3.  Paste the **System Prompt** (detailed above) into the instructions area.
-4.  Upload the **CSV file** to the chat context.
-5.  Start asking testing questions.
 
 ---
 
