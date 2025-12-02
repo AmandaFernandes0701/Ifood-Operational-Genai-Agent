@@ -1,24 +1,52 @@
-import React, { useState, KeyboardEvent } from 'react';
+
+import React, { useState, useRef, useEffect, KeyboardEvent } from 'react';
 import { inputStyles } from '../../styles/componentStyles';
 
 interface ChatInputProps {
   onSendMessage: (text: string) => void;
   isLoading: boolean;
+  onOpenPolicies: () => void;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
+const MAX_CHARS = 2000;
+
+export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, onOpenPolicies }) => {
   const [input, setInput] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-resize logic
+  useEffect(() => {
+    if (textareaRef.current) {
+      // Reset height to auto to get the correct scrollHeight for shrinking
+      textareaRef.current.style.height = 'auto';
+      // Set height to scrollHeight to expand
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [input]);
 
   const handleSend = () => {
     if (input.trim() && !isLoading) {
       onSendMessage(input.trim());
       setInput('');
+      // Reset height after sending
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+      }
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    // Send on Enter (without Shift)
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevent new line
       handleSend();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
+    if (text.length <= MAX_CHARS) {
+      setInput(text);
     }
   };
 
@@ -28,14 +56,29 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }
   return (
     <div className={inputStyles.container}>
       <div className={inputStyles.inputWrapper}>
-        <input
-          type="text"
+        
+        {/* Quick Policy Access Button */}
+        <button
+          onClick={onOpenPolicies}
+          className={inputStyles.policyButtonInput}
+          title="Ver Políticas Oficiais"
+          aria-label="Ver Políticas Oficiais"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </button>
+
+        <textarea
+          ref={textareaRef}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Digite o caso para análise (Ex: Cliente pede reembolso por atraso...)"
           className={inputStyles.textInput}
           disabled={isLoading}
+          rows={1}
+          maxLength={MAX_CHARS}
         />
         <button
           onClick={handleSend}
@@ -58,6 +101,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }
         <p className={inputStyles.securityLabel}>
           IA sujeita a erros. Valide as respostas e proteja dados sensíveis (LGPD).
         </p>
+        <span className={inputStyles.charCount}>
+          {input.length}/{MAX_CHARS}
+        </span>
       </div>
     </div>
   );
